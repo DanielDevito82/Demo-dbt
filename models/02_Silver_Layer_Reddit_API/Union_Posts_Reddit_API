@@ -1,0 +1,10 @@
+ {{ config(
+    materialized='table'
+ ) }}
+
+WITH unioned_data AS (
+    {{ m_union_tables('bronze_reddit_deltatable') }}
+ )
+
+ SELECT *
+ FROM unioned_data
