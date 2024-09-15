@@ -1,6 +1,8 @@
- {{ config(
+{{ config(
     materialized='table',
- ) }}
+    schema='silver_social_media_dbt',
+    pre_hook="{{ m_create_schema_if_not_exists('silver_social_media_dbt') }}"
+) }}
 
 {% set 
 fields_posts = [
