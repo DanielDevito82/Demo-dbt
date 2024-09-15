@@ -1,0 +1,18 @@
+{% set schema_name = 'bronze_reddit_deltatable' %}
+{% set table_names = m_get_table_names(schema_name, 'posts') %}
+
+{{ log("Table names: " ~ table_names, info=True) }}
+{{ print("Table names: " ~ table_names) }}
+{% if table_names.length == 0 %}
+    {{ exceptions.raise_compiler_error("No tables found in schema: " ~ schema_name) }}
+{% else %}
+    {% for table_name in table_names %}
+        SELECT '{{ table_name }}' AS table_name
+        {% if not loop.last %}
+            UNION ALL
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+
