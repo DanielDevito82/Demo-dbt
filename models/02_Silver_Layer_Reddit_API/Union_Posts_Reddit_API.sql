@@ -53,4 +53,4 @@ WITH unioned_data AS (
  )
 
 SELECT * FROM unioned_data
-LIMIT 100000
+LIMIT 1000000
