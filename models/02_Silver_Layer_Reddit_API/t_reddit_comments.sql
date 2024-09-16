@@ -46,7 +46,7 @@ fields_comments =
 %}
 
 WITH unioned_data AS (
-    {{ m_union_tables('bronze_reddit_deltatable', 'comments', fields_posts ) }}
+    {{ m_union_tables('bronze_reddit_deltatable', 'comments', fields_comments ) }}
  )
 
 SELECT * FROM unioned_data
