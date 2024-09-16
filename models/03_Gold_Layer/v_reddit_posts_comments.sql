@@ -4,19 +4,18 @@
 
 WITH posts AS (
     SELECT
-        {{ m_rename_columns('t_reddit_posts', 'posts_') }}
+        {{ m_rename_columns('silver_social_media_by_dbt','t_reddit_posts', 'posts_') }}
     FROM {{ ref('t_reddit_posts') }}
 ),
 
 comments AS (
     SELECT
-        {{ m_rename_columns('t_reddit_comments', 'comments_') }}
+        {{ m_rename_columns('silver_social_media_by_dbt','t_reddit_comments', 'comments_') }}
     FROM {{ ref('t_reddit_comments') }}
 )
 
 SELECT
-    posts.*,
-    comments.*
+    *
 FROM posts
 JOIN comments
-ON posts.posts_id = comments.comments_post_id
+ON posts.posts_id = comments.comments_id
