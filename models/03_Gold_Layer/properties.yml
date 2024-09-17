@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: Reddit API Silver Layer
+    catalog: portfolio_analyse
+    schema: silver_social_media_by_dbt
+    loader: Databricks
+    tables:
+      - name: t_reddit_posts
+      - name: t_reddit_comments
+
+models:
+  - name: v_reddit_posts_comments
+    description: "This model combines Reddit posts and comments."
+    columns:
+      - name: posts_id
+        description: "The unique identifier for each post."
+      - name: comments_id
+        description: "The unique identifier for each comment."
+      # Weitere Spaltenbeschreibungen hinzufügen
+    tests:
+      - unique:
+          column_name: posts_id
+      - not_null:
+          column_name: posts_id
+      - unique:
+          column_name: comments_id
+      - not_null:
+          column_name: comments_id
