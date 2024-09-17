@@ -5,13 +5,13 @@
 WITH posts AS (
     SELECT
         {{ m_rename_columns('silver_social_media_by_dbt','t_reddit_posts', 'posts_') }}
-    FROM {{ ref('t_reddit_posts') }}
+    FROM {{ source('Reddit API Silver Layer','t_reddit_posts') }}
 ),
 
 comments AS (
     SELECT
         {{ m_rename_columns('silver_social_media_by_dbt','t_reddit_comments', 'comments_') }}
-    FROM {{ ref('t_reddit_comments') }}
+    FROM {{ source('Reddit API Silver Layer','t_reddit_comments') }}
 )
 
 SELECT
